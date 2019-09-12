@@ -7,7 +7,7 @@ import "./App.css";
 import "./media-queries.css";
 
 class App extends Component {
-  state = database
+  state = database;
 
   render() {
     return (
