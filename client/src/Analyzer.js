@@ -34,7 +34,6 @@ class Analyzer extends Component {
         <select value={this.state.value} onChange={this.handleChange}>
           {nameArr}
         </select>
-
         <div className="spacer10" />
         <button onClick={this.handleNameSubmit}>Submit</button>
       </div>
