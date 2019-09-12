@@ -1,58 +1,12 @@
 import React, { Component } from "react";
 import Analyzer from "./Analyzer";
+import database from "./sample_record2";
 
 import "./App.css";
 import "./media-queries.css";
 
 class App extends Component {
-  state = {
-    190912: [
-      {
-        id: 1,
-        student_name: "John Doe",
-        adhd: true,
-        depression: false,
-        anxiety: true
-      },
-      {
-        id: 2,
-        student_name: "Jane Smith",
-        adhd: true,
-        depression: false,
-        anxiety: true
-      },
-      {
-        id: 3,
-        student_name: "Julio Iglesias",
-        adhd: true,
-        depression: false,
-        anxiety: true
-      }
-    ],
-    190913: [
-      {
-        id: 1,
-        student_name: "John Doe",
-        adhd: true,
-        depression: false,
-        anxiety: true
-      },
-      {
-        id: 2,
-        student_name: "Jane Smith",
-        adhd: true,
-        depression: false,
-        anxiety: true
-      },
-      {
-        id: 3,
-        student_name: "Julio Iglesias",
-        adhd: true,
-        depression: false,
-        anxiety: true
-      }
-    ]
-  };
+  state = database
 
   render() {
     return (
