@@ -24,7 +24,7 @@ const database = {
     {
       id: 4,
       student_name: "Lillian M. Razo",
-      adhd: true,
+      adhd: false,
       depression: false,
       anxiety: true
     },
@@ -32,14 +32,14 @@ const database = {
       id: 5,
       student_name: "Laverne W. Murphy",
       adhd: true,
-      depression: false,
-      anxiety: true
+      depression: true,
+      anxiety: false
     },
     {
       id: 6,
       student_name: "Julio Iglesias",
       adhd: true,
-      depression: false,
+      depression: true,
       anxiety: true
     },
     {
