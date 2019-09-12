@@ -88,11 +88,11 @@ ul {
 
 li {
   font-size: 1.2em;
-  font-weight: 600;
+  font-weight: 400;
   text-align: center;
   margin: 5px;
   /* color 0 */
-  color: #1c2a39;
+  color: white;
 }
 
 /* Tables: */
@@ -144,7 +144,6 @@ tr {
 td {
   text-align: left;
 }
-
 
 /* Button (General Use) */
 
