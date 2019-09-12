@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import ReportByStudent from "./ReportByStudent";
 import ReportByDate from "./ReportByDate";
 import ByNameSelector from "./ByNameSelector";
+import ByDateSelector from "./ByDateSelector";
 
 class Analyzer extends Component {
   state = {
@@ -12,13 +13,22 @@ class Analyzer extends Component {
     ]
   };
 
-  addNewName = newName => {
+  addNewNameReport = newName => {
     const newNameObj = {
       reportId: this.state.reports.length,
       reportType: "student",
       reportParam: newName
     };
     this.setState({ reports: [...this.state.reports, newNameObj] });
+  };
+
+  addNewDateReport = newDate => {
+    const newDateObj = {
+      reportId: this.state.reports.length,
+      reportType: "date",
+      reportParam: newDate
+    };
+    this.setState({ reports: [...this.state.reports, newDateObj] });
   };
 
   render() {
@@ -31,6 +41,17 @@ class Analyzer extends Component {
         </option>
       );
     });
+
+    //extract valid class dates from this.props.data
+    let datesObj = Object.keys(this.props.data);
+    const dateArr = datesObj.map((entry, index) => {
+      return (
+        <option key={entry.id} value={entry}>
+          {entry}
+        </option>
+      );
+    });
+
     const reportsList = this.state.reports.map((entry, index) => {
       if (entry.reportType === "student") {
         return (
@@ -53,7 +74,8 @@ class Analyzer extends Component {
     return (
       <div>
         {reportsList}
-        <ByNameSelector names={nameArr} addName={this.addNewName} />
+        <ByNameSelector names={nameArr} addName={this.addNewNameReport} />
+        <ByDateSelector dates={dateArr} addDate={this.addNewDateReport} />
       </div>
     );
   }

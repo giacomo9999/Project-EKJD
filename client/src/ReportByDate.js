@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class ReportByDate extends Component {
   render() {
+    console.log("RBD here..", this.props.data[this.props.date]);
     let dateSympReport = this.props.data[this.props.date].reduce(
       (accum, curr) => {
         accum.adhd += curr.adhd;
@@ -13,7 +14,7 @@ class ReportByDate extends Component {
     );
     return (
       <div className="container-inner">
-        <h2>Date: {this.props.date}</h2>
+        <h2>Class Date: {this.props.date}</h2>
         <h3>{this.props.data[this.props.date].length} Students Present</h3>
         <h3>
           ADHD: {dateSympReport.adhd} of{" "}

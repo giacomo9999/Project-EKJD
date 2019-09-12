@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 class reportByStudent extends Component {
   render() {
     const studentReport = {
