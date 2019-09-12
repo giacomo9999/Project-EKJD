@@ -7,6 +7,7 @@ export default class Form extends Component {
         this.state = {
             database:[]
     }
+    
 }
 
     handleChange = (e)=>{
