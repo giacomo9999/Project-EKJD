@@ -1,0 +1,49 @@
+import React, { Component } from 'react'
+import * as CanvasJSReact from './canvasjs.react';
+//var CanvasJSReact = require('./canvasjs.react');
+var CanvasJS = CanvasJSReact.CanvasJS;
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+export default class PieClass extends Component {
+    constructor(props){
+        super(props);
+        this.state ={
+            database: []
+        }
+        const chart = new CanvasJS.Chart("chartContainer", {
+            theme: "light2", // "light1", "light2", "dark1", "dark2"
+            exportEnabled: true,
+            animationEnabled: true,
+            title: {
+                text: "Desktop Browser Market Share in 2016"
+            },
+            data: [{
+                type: "pie",
+                startAngle: 25,
+                toolTipContent: "<b>{label}</b>: {y}%",
+                showInLegend: "true",
+                legendText: "{label}",
+                indexLabelFontSize: 16,
+                indexLabel: "{label} - {y}%",
+                dataPoints: [
+                    { y: 51.08, label: "Chrome" },
+                    { y: 27.34, label: "Internet Explorer" },
+                    { y: 10.62, label: "Firefox" },
+                    { y: 5.02, label: "Microsoft Edge" },
+                    { y: 4.07, label: "Safari" },
+                    { y: 1.22, label: "Opera" },
+                    { y: 0.44, label: "Others" }
+                ]
+            }]
+        });
+    }   
+ 
+
+    render() {
+        return (
+            <div>
+                
+            </div>
+        )
+    }
+}
