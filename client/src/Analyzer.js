@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import ReportByStudent from "./ReportByStudent";
+import ReportByDate from "./ReportByDate";
 
 class Analyzer extends Component {
   state = { value: "" };
@@ -13,70 +15,6 @@ class Analyzer extends Component {
     event.preventDefault();
   };
 
-  reportByDate = dateIn => {
-    let dateSympReport = this.props.data[dateIn].reduce(
-      (accum, curr) => {
-        accum.adhd += curr.adhd;
-        accum.depression += curr.depression;
-        accum.anxiety += curr.anxiety;
-        return accum;
-      },
-      { adhd: 0, depression: 0, anxiety: 0 }
-    );
-    return (
-      <div className="container-inner">
-        <h2>Date: {dateIn}</h2>
-        <h3>{this.props.data[dateIn].length} Students Present</h3>
-        <h3>
-          ADHD: {dateSympReport.adhd} of {this.props.data[dateIn].length}{" "}
-          students
-        </h3>
-        <h3>
-          Depression: {dateSympReport.depression} of{" "}
-          {this.props.data[dateIn].length} students
-        </h3>
-        <h3>
-          Anxiety: {dateSympReport.anxiety} of {this.props.data[dateIn].length}{" "}
-          students
-        </h3>
-      </div>
-    );
-  };
-
-  reportByStudent = studentName => {
-    const studentReport = {
-      daysPresent: 0,
-      adhd: 0,
-      depression: 0,
-      anxiety: 0
-    };
-    Object.keys(this.props.data).forEach(date =>
-      this.props.data[date].forEach(student => {
-        if (student.student_name === studentName) {
-          studentReport.daysPresent += 1;
-          studentReport.adhd += student.adhd;
-          studentReport.depression += student.depression;
-          studentReport.anxiety += student.anxiety;
-        }
-      })
-    );
-    return (
-      <div className="container-inner">
-        <h2>Student Name: {studentName}</h2>
-        <h3>
-          ADHD: {studentReport.adhd} of {studentReport.daysPresent} days present
-        </h3>
-        <h3>
-          Depression: {studentReport.depression} of {studentReport.daysPresent}{" "}
-          days present
-        </h3>
-        <h3>
-          Anxiety: {studentReport.anxiety} of {studentReport.daysPresent} days
-          present
-        </h3>
-      </div>
-    );
-  };
   render() {
     // extract student names from this.props.data
     let keysObj = Object.keys(this.props.data)[0];
@@ -90,8 +28,8 @@ class Analyzer extends Component {
 
     return (
       <div>
-        {this.reportByDate(190912)}
-        {this.reportByStudent("Jeff L. Fletcher")}
+        <ReportByStudent data={this.props.data} name="Irena J. Davis" />
+        <ReportByDate data={this.props.data} date="190913" />
 
         <select value={this.state.value} onChange={this.handleChange}>
           {nameArr}
