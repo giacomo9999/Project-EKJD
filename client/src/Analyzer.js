@@ -66,12 +66,23 @@ class Analyzer extends Component {
     );
   };
   render() {
-    console.log(this.props.data);
+    // extract student names from this.props.data
+    let keysObj = Object.keys(this.props.data)[0];
+    const nameArr = this.props.data[keysObj].map((entry, index) => {
+      return <option value={entry.student_name}>{entry.student_name}</option>;
+    });
+
     return (
       <div>
         {/* <h2>I Am The Data Analyzer</h2> */}
         {this.reportByDate(190912)}
         {this.reportByStudent("Jeff L. Fletcher")}
+        <form className="h-form" onSubmit={this.reportByDate}>
+          <label className="h-label">Select By Student Name</label>
+          <select name="students">{nameArr}</select>
+          <br />
+          <button className="submit">Submit</button>
+        </form>
       </div>
     );
   }
