@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import database from './sample_record2'
+// import database from './sample_record2'
 
 export default class Form extends Component {
     constructor(props){
@@ -17,8 +17,6 @@ export default class Form extends Component {
         })
     }
     
-    
-
     render() {
         return (
             <div>
