@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="container-outer">
-        <h1>Hello Name Of Teacher</h1>
+        <h1>Hello, Name Of Teacher</h1>
         <Analyzer data={this.state} />
       </div>
     );

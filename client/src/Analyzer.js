@@ -1,18 +1,24 @@
 import React, { Component } from "react";
 import ReportByStudent from "./ReportByStudent";
 import ReportByDate from "./ReportByDate";
+import ByNameSelector from "./ByNameSelector";
 
 class Analyzer extends Component {
-  state = { value: "" };
-
-  handleChange = event => {
-    console.log(event.target.value);
-    this.setState({ value: event.target.value });
+  state = {
+    reports: [
+      { reportId: 1, reportType: "student", reportParam: "Irena J. Davis" },
+      { reportId: 2, reportType: "date", reportParam: "190913" },
+      { reportId: 3, reportType: "student", reportParam: "Caleb S. Sun" }
+    ]
   };
 
-  handleNameSubmit = event => {
-    alert("Your favorite flavor is: " + this.state.value);
-    event.preventDefault();
+  addNewName = newName => {
+    const newNameObj = {
+      reportId: this.state.reports.length,
+      reportType: "student",
+      reportParam: newName
+    };
+    this.setState({ reports: [...this.state.reports, newNameObj] });
   };
 
   render() {
@@ -25,17 +31,29 @@ class Analyzer extends Component {
         </option>
       );
     });
+    const reportsList = this.state.reports.map((entry, index) => {
+      if (entry.reportType === "student") {
+        return (
+          <ReportByStudent
+            key={index}
+            data={this.props.data}
+            name={entry.reportParam}
+          />
+        );
+      } else
+        return (
+          <ReportByDate
+            key={index}
+            data={this.props.data}
+            date={entry.reportParam}
+          />
+        );
+    });
 
     return (
       <div>
-        <ReportByStudent data={this.props.data} name="Irena J. Davis" />
-        <ReportByDate data={this.props.data} date="190913" />
-
-        <select value={this.state.value} onChange={this.handleChange}>
-          {nameArr}
-        </select>
-        <div className="spacer10" />
-        <button onClick={this.handleNameSubmit}>Submit</button>
+        {reportsList}
+        <ByNameSelector names={nameArr} addName={this.addNewName} />
       </div>
     );
   }
