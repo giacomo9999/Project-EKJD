@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Analyzer extends Component {
   showStudentsOnDate = dateIn => {
+    dateIn = 190912;
     const studentsPresent = this.props.data[dateIn].map(entry => {
       return <li key={entry.id}>{entry.student_name}</li>;
     });
@@ -12,7 +13,7 @@ class Analyzer extends Component {
     return (
       <div className="container-inner">
         <h2>I Am The Data Analyzer</h2>
-        {this.showStudentsOnDate(190912)}
+        <button onClick={this.showStudentsOnDate}>Show Students</button>
       </div>
     );
   }
