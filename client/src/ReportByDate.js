@@ -5,29 +5,31 @@ class ReportByDate extends Component {
     // console.log("RBD here..", this.props.data[this.props.date]);
     let dateSympReport = this.props.data[this.props.date].reduce(
       (accum, curr) => {
-        accum.adhd += curr.adhd;
-        accum.depression += curr.depression;
-        accum.anxiety += curr.anxiety;
+        accum.adhd += curr.adhd === "true";
+        accum.depression += curr.depression === "true";
+        accum.anxiety += curr.anxiety === "true";
         return accum;
       },
       { adhd: 0, depression: 0, anxiety: 0 }
     );
     return (
       <div className="container-inner">
-        <h2>Class Date: {this.props.date}</h2>
-        <h3>{this.props.data[this.props.date].length} Students Present</h3>
-        <h3>
+        <h2>
+          Class Date: <h2 className="bold">{this.props.date}</h2>
+        </h2>
+        <p>{this.props.data[this.props.date].length} Students Present</p>
+        <p>
           ADHD: {dateSympReport.adhd} of{" "}
           {this.props.data[this.props.date].length} students
-        </h3>
-        <h3>
+        </p>
+        <p>
           Depression: {dateSympReport.depression} of{" "}
           {this.props.data[this.props.date].length} students
-        </h3>
-        <h3>
+        </p>
+        <p>
           Anxiety: {dateSympReport.anxiety} of{" "}
           {this.props.data[this.props.date].length} students
-        </h3>
+        </p>
       </div>
     );
   }

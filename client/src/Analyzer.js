@@ -6,11 +6,7 @@ import ByDateSelector from "./ByDateSelector";
 
 class Analyzer extends Component {
   state = {
-    reports: [
-      { reportId: 1, reportType: "student", reportParam: "Irena J. Davis" },
-      { reportId: 2, reportType: "date", reportParam: "190913" },
-      { reportId: 3, reportType: "student", reportParam: "Caleb S. Sun" }
-    ]
+    reports: []
   };
 
   addNewNameReport = newName => {

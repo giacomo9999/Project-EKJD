@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Analyzer from "./Analyzer";
-import database from "./sample_record";
+// import database from "./sample_record";
+import database from "./sample_record_190913";
 
 import "./App.css";
 import "./media-queries.css";
