@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import ReportByStudent from "./ReportByStudent";
 import ReportByDate from "./ReportByDate";
 import ByTypeSelector from "./ByTypeSelector";
-// import ByDateSelector from "./ByDateSelector";
 
 class Analyzer extends Component {
   state = {
