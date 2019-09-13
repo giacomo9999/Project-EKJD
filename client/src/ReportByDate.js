@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class ReportByDate extends Component {
   render() {
-    // console.log("RBD here..", this.props.data[this.props.date]);
     let dateSympReport = this.props.data[this.props.date].reduce(
       (accum, curr) => {
         accum.adhd += curr.adhd === "true";

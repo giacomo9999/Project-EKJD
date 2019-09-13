@@ -8,8 +8,12 @@ class ByTypeSelector extends Component {
   };
 
   render() {
+    let capReportType =
+      this.props.reportType.charAt(0).toUpperCase() +
+      this.props.reportType.slice(1);
     return (
       <div className="container-inner">
+        <h3>Show Symptoms by {capReportType}</h3>
         <select value={this.state.value} onChange={this.handleChange}>
           {this.props.data}
         </select>
