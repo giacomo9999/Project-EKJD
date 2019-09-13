@@ -1,31 +1,24 @@
 import React, { Component } from "react";
 import ReportByStudent from "./ReportByStudent";
 import ReportByDate from "./ReportByDate";
-import ByNameSelector from "./ByNameSelector";
-import ByDateSelector from "./ByDateSelector";
+import ByTypeSelector from "./ByTypeSelector";
+// import ByDateSelector from "./ByDateSelector";
 
 class Analyzer extends Component {
   state = {
     reports: []
   };
 
-  addNewNameReport = newName => {
-    const newNameObj = {
+  addNewReport = (newParam, reportTypeIn) => {
+    const newReportObj = {
       reportId: this.state.reports.length,
-      reportType: "student",
-      reportParam: newName
+      reportType: reportTypeIn,
+      reportParam: newParam
     };
-    this.setState({ reports: [...this.state.reports, newNameObj] });
+    this.setState({ reports: [...this.state.reports, newReportObj] });
   };
 
-  addNewDateReport = newDate => {
-    const newDateObj = {
-      reportId: this.state.reports.length,
-      reportType: "date",
-      reportParam: newDate
-    };
-    this.setState({ reports: [...this.state.reports, newDateObj] });
-  };
+  
 
   render() {
     // extract student names from this.props.data
@@ -49,7 +42,7 @@ class Analyzer extends Component {
     });
 
     const reportsList = this.state.reports.map((entry, index) => {
-      if (entry.reportType === "student") {
+      if (entry.reportType === "name") {
         return (
           <ReportByStudent
             key={index}
@@ -70,8 +63,16 @@ class Analyzer extends Component {
     return (
       <div>
         {reportsList}
-        <ByNameSelector names={nameArr} addName={this.addNewNameReport} />
-        <ByDateSelector dates={dateArr} addDate={this.addNewDateReport} />
+        <ByTypeSelector
+          data={nameArr}
+          addNew={this.addNewReport}
+          reportType={"name"}
+        />
+        <ByTypeSelector
+          data={dateArr}
+          addNew={this.addNewReport}
+          reportType={"date"}
+        />
       </div>
     );
   }

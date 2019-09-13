@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class ByDateSelector extends Component {
+class ByTypeSelector extends Component {
   state = { value: "" };
 
   handleChange = event => {
@@ -11,10 +11,14 @@ class ByDateSelector extends Component {
     return (
       <div className="container-inner">
         <select value={this.state.value} onChange={this.handleChange}>
-          {this.props.dates}
+          {this.props.data}
         </select>
         <div className="spacer10" />
-        <button onClick={() => this.props.addDate(this.state.value)}>
+        <button
+          onClick={() =>
+            this.props.addNew(this.state.value, this.props.reportType)
+          }
+        >
           Submit
         </button>
       </div>
@@ -22,4 +26,4 @@ class ByDateSelector extends Component {
   }
 }
 
-export default ByDateSelector;
+export default ByTypeSelector;
