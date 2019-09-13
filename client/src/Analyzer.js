@@ -18,8 +18,6 @@ class Analyzer extends Component {
     this.setState({ reports: [...this.state.reports, newReportObj] });
   };
 
-  
-
   render() {
     // extract student names from this.props.data
     let keysObj = Object.keys(this.props.data)[0];
@@ -41,6 +39,7 @@ class Analyzer extends Component {
       );
     });
 
+    // determine report type
     const reportsList = this.state.reports.map((entry, index) => {
       if (entry.reportType === "name") {
         return (

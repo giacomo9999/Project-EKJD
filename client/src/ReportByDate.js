@@ -16,7 +16,6 @@ class ReportByDate extends Component {
       "November",
       "December"
     ];
-    // console.log(dateIn.slice(2, 4), dateIn.slice(4));
     return monthsArr[Number(dateIn.slice(2, 4)) - 1] + " " + dateIn.slice(4);
   };
   render() {
