@@ -21,9 +21,8 @@ class reportByStudent extends Component {
     );
     return (
       <div className="container-inner">
-        <h2>
-          Student Name: <h2 className="bold">{this.props.name}</h2>
-        </h2>
+        <h2>Student Name:</h2>
+        <h1 className="bold">{this.props.name}</h1>
         <p>
           ADHD: {studentReport.adhd} of {studentReport.daysPresent} days present
         </p>
