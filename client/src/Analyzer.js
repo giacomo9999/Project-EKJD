@@ -1,88 +1,81 @@
 import React, { Component } from "react";
+import ReportByStudent from "./ReportByStudent";
+import ReportByDate from "./ReportByDate";
+import ByNameSelector from "./ByNameSelector";
+import ByDateSelector from "./ByDateSelector";
 
 class Analyzer extends Component {
-  reportByDate = dateIn => {
-    let dateSympReport = this.props.data[dateIn].reduce(
-      (accum, curr) => {
-        accum.adhd += curr.adhd;
-        accum.depression += curr.depression;
-        accum.anxiety += curr.anxiety;
-        return accum;
-      },
-      { adhd: 0, depression: 0, anxiety: 0 }
-    );
-    return (
-      <div className="container-inner">
-        <h2>Date: {dateIn}</h2>
-        <h3>{this.props.data[dateIn].length} Students Present</h3>
-        <h3>
-          ADHD: {dateSympReport.adhd} of {this.props.data[dateIn].length}{" "}
-          students
-        </h3>
-        <h3>
-          Depression: {dateSympReport.depression} of{" "}
-          {this.props.data[dateIn].length} students
-        </h3>
-        <h3>
-          Anxiety: {dateSympReport.anxiety} of {this.props.data[dateIn].length}{" "}
-          students
-        </h3>
-      </div>
-    );
+  state = {
+    reports: [
+      { reportId: 1, reportType: "student", reportParam: "Irena J. Davis" },
+      { reportId: 2, reportType: "date", reportParam: "190913" },
+      { reportId: 3, reportType: "student", reportParam: "Caleb S. Sun" }
+    ]
   };
 
-  reportByStudent = studentName => {
-    const studentReport = {
-      daysPresent: 0,
-      adhd: 0,
-      depression: 0,
-      anxiety: 0
+  addNewNameReport = newName => {
+    const newNameObj = {
+      reportId: this.state.reports.length,
+      reportType: "student",
+      reportParam: newName
     };
-    Object.keys(this.props.data).forEach(date =>
-      this.props.data[date].forEach(student => {
-        if (student.student_name === studentName) {
-          studentReport.daysPresent += 1;
-          studentReport.adhd += student.adhd;
-          studentReport.depression += student.depression;
-          studentReport.anxiety += student.anxiety;
-        }
-      })
-    );
-    return (
-      <div className="container-inner">
-        <h2>Student Name: {studentName}</h2>
-        <h3>
-          ADHD: {studentReport.adhd} of {studentReport.daysPresent} days present
-        </h3>
-        <h3>
-          Depression: {studentReport.depression} of {studentReport.daysPresent}{" "}
-          days present
-        </h3>
-        <h3>
-          Anxiety: {studentReport.anxiety} of {studentReport.daysPresent} days
-          present
-        </h3>
-      </div>
-    );
+    this.setState({ reports: [...this.state.reports, newNameObj] });
   };
+
+  addNewDateReport = newDate => {
+    const newDateObj = {
+      reportId: this.state.reports.length,
+      reportType: "date",
+      reportParam: newDate
+    };
+    this.setState({ reports: [...this.state.reports, newDateObj] });
+  };
+
   render() {
     // extract student names from this.props.data
     let keysObj = Object.keys(this.props.data)[0];
     const nameArr = this.props.data[keysObj].map((entry, index) => {
-      return <option value={entry.student_name}>{entry.student_name}</option>;
+      return (
+        <option key={entry.id} value={entry.student_name}>
+          {entry.student_name}
+        </option>
+      );
+    });
+
+    //extract valid class dates from this.props.data
+    let datesObj = Object.keys(this.props.data);
+    const dateArr = datesObj.map((entry, index) => {
+      return (
+        <option key={entry.id} value={entry}>
+          {entry}
+        </option>
+      );
+    });
+
+    const reportsList = this.state.reports.map((entry, index) => {
+      if (entry.reportType === "student") {
+        return (
+          <ReportByStudent
+            key={index}
+            data={this.props.data}
+            name={entry.reportParam}
+          />
+        );
+      } else
+        return (
+          <ReportByDate
+            key={index}
+            data={this.props.data}
+            date={entry.reportParam}
+          />
+        );
     });
 
     return (
       <div>
-        {/* <h2>I Am The Data Analyzer</h2> */}
-        {this.reportByDate(190912)}
-        {this.reportByStudent("Jeff L. Fletcher")}
-        <form className="h-form" onSubmit={this.reportByDate}>
-          <label className="h-label">Select By Student Name</label>
-          <select name="students">{nameArr}</select>
-          <br />
-          <button className="submit">Submit</button>
-        </form>
+        {reportsList}
+        <ByNameSelector names={nameArr} addName={this.addNewNameReport} />
+        <ByDateSelector dates={dateArr} addDate={this.addNewDateReport} />
       </div>
     );
   }

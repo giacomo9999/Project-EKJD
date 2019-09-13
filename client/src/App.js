@@ -6,6 +6,7 @@ import database from "./sample_record2";
 //import Form from "./Form";
  //import Form from "./Form";
 
+import database from "./sample_record";
 
 import "./App.css";
 import "./media-queries.css";
@@ -22,6 +23,8 @@ class App extends Component {
     
 
 
+        <h1>Hello, Name Of Teacher</h1>
+        <Analyzer data={this.state} />
       </div>
     );
   }
